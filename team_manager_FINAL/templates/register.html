@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% include 'homeheader.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 style="margin-top: 15px; margin-bottom: 20px;">Register</h1>
+  <form method="POST">
+    <table class="table">
+      
+      <!-- First Name -->
+      <tr>
+        <td>First Name</td>
+        <td><input type="text" name="first_name" class="form-control" required /></td>
+      </tr>
+
+      <!-- Last Name -->
+      <tr>
+        <td>Last Name</td>
+        <td><input type="text" name="last_name" class="form-control" required /></td>
+      </tr>
+
+      <!-- Username -->
+      <tr>
+        <td>Username</td>
+        <td><input type="text" name="username" class="form-control" required /></td>
+      </tr>
+
+      <!-- Email -->
+      <tr>
+        <td>Email</td>
+        <td><input type="email" name="email" class="form-control" required /></td>
+      </tr>
+
+      <!-- Password -->
+      <tr>
+        <td>Password</td>
+        <td><input type="password" name="password" class="form-control" required /></td>
+      </tr>
+
+      <!-- Submit Button -->
+      <tr>
+        <td colspan="2" style="border: none;">
+          <input type="submit" name="submit" value="Register" class="btn btn-warning">
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="alert alert-danger mt-3">
+        {% for category, message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+</div>
+{% endblock %}
