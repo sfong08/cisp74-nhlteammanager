@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}Edit Player{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 style="margin-top: 15px; margin-bottom: 20px;">Edit Player Information</h1>
+  <form action='' method="POST" enctype="multipart/form-data">
+    <table class="table">
+
+      <!-- Player Photo (Optional for edit) -->
+      <tr>
+        <td>Choose Player Photo</td>
+        <td>
+          {% if player.picture %}
+            <img src="{{ url_for('static', filename='uploads/' + player.picture) }}" alt="Player Photo" class="img-thumbnail" width="100">
+            <br><br>
+          {% endif %}
+          <input type="file" name="picture" class="form-control" />
+        </td>
+      </tr>
+
+      <!-- Player Number -->
+      <tr>
+        <td>Player Number</td>
+        <td><input type="text" name="number" class="form-control col-sm-1" value="{{ player.number }}" required /></td>
+      </tr>
+
+      <!-- First Name -->
+      <tr>
+        <td>First Name</td>
+        <td><input type="text" name="first_name" class="form-control" value="{{ player.first_name }}" required /></td>
+      </tr>
+
+      <!-- Last Name -->
+      <tr>
+        <td>Last Name</td>
+        <td><input type="text" name="last_name" class="form-control" value="{{ player.last_name }}" required /></td>
+      </tr>
+
+      <!-- Position -->
+      <tr>
+        <td>Position</td>
+        <td>
+          <select name="position" class="form-control" required>
+            <option value="Center" {% if player.position == 'Center' %}selected{% endif %}>Center</option>
+            <option value="Right Wing" {% if player.position == 'Right Wing' %}selected{% endif %}>Right Wing</option>
+            <option value="Left Wing" {% if player.position == 'Left Wing' %}selected{% endif %}>Left Wing</option>
+            <option value="Defense" {% if player.position == 'Defense' %}selected{% endif %}>Defense</option>
+            <option value="Goaltender" {% if player.position == 'Goaltender' %}selected{% endif %}>Goaltender</option>
+          </select>
+        </td>
+      </tr>
+
+      <!-- Shooting/Glove Hand -->
+      <tr>
+        <td>Shooting/Glove Hand</td>
+        <td>
+          Left: <input type="radio" name="hand" value="L" {% if player.hand == 'L' %}checked{% endif %} required />
+          Right: <input type="radio" name="hand" value="R" {% if player.hand == 'R' %}checked{% endif %} required />
+        </td>
+      </tr>
+
+      <!-- Height -->
+      <tr>
+        <td>Height</td>
+        <td><input type="text" name="height" class="form-control" value="{{ player.height }}" required /></td>
+      </tr>
+
+      <!-- Weight (in lbs) -->
+      <tr>
+        <td>Weight (in lbs)</td>
+        <td><input type="text" name="weight" class="form-control" value="{{ player.weight }}" required /></td>
+      </tr>
+
+      <!-- Birthdate -->
+      <tr>
+        <td>Birthdate</td>
+        <td><input type="date" name="birthdate" class="form-control" value="{{ player.birthdate.strftime('%Y-%m-%d') }}" required /></td>
+      </tr>
+
+      <!-- Birthplace -->
+      <tr>
+        <td>Birthplace</td>
+        <td><input type="text" name="birthplace" class="form-control" value="{{ player.birthplace }}" required /></td>
+      </tr>
+
+      <!-- Submit Button -->
+      <tr>
+        <td colspan="2" style="border: none;">
+          <input type="submit" name="submit" value="Submit" class="btn btn-warning">
+        </td>
+      </tr>
+
+    </table>
+  </form>
+</div>
+{% endblock %}

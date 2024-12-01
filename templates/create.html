@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}Create Player{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 style="margin-top: 15px; margin-bottom: 20px;">Add a New Player</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <table class="table">
+      <!-- Player Photo -->
+      <tr>
+        <td>Choose Player Photo</td>
+        <td><input type="file" name="picture" class="form-control" /></td>
+      </tr>
+      
+      <!-- Player Number -->
+      <tr>
+        <td>Player Number</td>
+        <td><input type="text" name="number" class="form-control col-sm-1" required /></td>
+      </tr>
+
+      <!-- First Name -->
+      <tr>
+        <td>First Name</td>
+        <td><input type="text" name="first_name" class="form-control" placeholder="e.g. Quinn" required /></td>
+      </tr>
+
+      <!-- Last Name -->
+      <tr>
+        <td>Last Name</td>
+        <td><input type="text" name="last_name" class="form-control" placeholder="e.g. Hughes" required /></td>
+      </tr>
+
+      <!-- Position -->
+      <tr>
+        <td>Position</td>
+        <td>
+          <select name="position" class="form-control" required>
+            <option value="Center">Center</option>
+            <option value="Right Wing">Right Wing</option>
+            <option value="Left Wing">Left Wing</option>
+            <option value="Defense">Defense</option>
+            <option value="Goaltender">Goaltender</option>
+          </select>
+        </td>
+      </tr>
+
+      <!-- Shooting/Glove Hand -->
+      <tr>
+        <td>Shooting/Glove Hand</td>
+        <td>
+          Left: <input type="radio" name="hand" value="L" required />
+          Right: <input type="radio" name="hand" value="R" required />
+        </td>
+      </tr>
+
+      <!-- Height -->
+      <tr>
+        <td>Height</td>
+        <td><input type="text" name="height" class="form-control" required placeholder="e.g. 5'10&quot;" /></td>
+      </tr>
+
+      <!-- Weight -->
+      <tr>
+        <td>Weight (in lbs)</td>
+        <td><input type="text" name="weight" class="form-control" required placeholder="e.g. 180" /></td>
+      </tr>
+
+      <!-- Birthdate -->
+      <tr>
+        <td>Birthdate</td>
+        <td><input type="date" name="birthdate" class="form-control" required /></td>
+      </tr>
+
+      <!-- Birthplace -->
+      <tr>
+        <td>Birthplace</td>
+        <td><input type="text" name="birthplace" class="form-control" required placeholder="e.g. Orlando, FL, USA" /></td>
+      </tr>
+
+      <!-- Submit Button -->
+      <tr>
+        <td colspan="2" style="border: none;">
+          <input type="submit" name="submit" value="Submit" class="btn btn-warning">
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{% endblock %}
