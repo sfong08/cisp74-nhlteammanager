@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}Edit Game Schedule{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 style="margin-top: 15px; margin-bottom: 20px;">Edit Game Schedule</h1>
+  <form method="POST">
+    <table class="table">
+      <!-- Game Date -->
+      <tr>
+        <td>Date</td>
+        <td><input type="text" name="date" class="form-control" value="{{ formatted_date }}" required /></td>
+      </tr>
+
+      <!-- Game Time -->
+      <tr>
+        <td>Time</td>
+        <td>
+          <div class="input-group">
+            <!-- Allow time input in 12-hour format (HH:MM) -->
+            <input type="text" name="time" id="time" class="form-control" placeholder="HH:MM" value="{{ game.time }}" required />
+            <!-- AM/PM Dropdown -->
+            <select name="am_pm" id="am_pm" class="form-control" required>
+              <option value="AM" {% if 'AM' in game.time %}selected{% endif %}>AM</option>
+              <option value="PM" {% if 'PM' in game.time %}selected{% endif %}>PM</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+
+      <!-- Time Zone -->
+      <tr>
+        <td>Time Zone</td>
+        <td><input type="text" name="timezone" class="form-control" value="{{ game.timezone }}" required /></td>
+      </tr>
+
+      <!-- Home or Away -->
+      <tr>
+        <td>Home or Away?</td>
+        <td>
+          <select name="home_or_away" class="form-control" required>
+            <option value="Home" {% if game.home_or_away == 'Home' %}selected{% endif %}>Home</option>
+            <option value="Away" {% if game.home_or_away == 'Away' %}selected{% endif %}>Away</option>
+          </select>
+        </td>
+      </tr>
+
+      <!-- Team -->
+      <tr>
+        <td>Team</td>
+        <td><input type="text" name="team" class="form-control" value="{{ game.team }}" required /></td>
+      </tr>
+
+      <!-- Location -->
+      <tr>
+        <td>Location</td>
+        <td><input type="text" name="location" class="form-control" value="{{ game.location }}" required /></td>
+      </tr>
+
+      <!-- Venue -->
+      <tr>
+        <td>Venue</td>
+        <td><input type="text" name="venue" class="form-control" value="{{ game.venue }}" required /></td>
+      </tr>
+
+      <!-- Submit Button -->
+      <tr>
+        <td colspan="2" style="border: none;">
+          <input type="submit" name="submit" value="Submit" class="btn btn-warning">
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<script>
+  // Combine time input and AM/PM dropdown before form submission
+  const form = document.querySelector('form');
+  form.addEventListener('submit', function(event) {
+    const timeInput = document.getElementById('time');
+    const amPmSelect = document.getElementById('am_pm');
+
+    // Combine the time and AM/PM value into one string (e.g., "10:30 AM")
+    const combinedTime = `${timeInput.value} ${amPmSelect.value}`;
+
+    // Set the time input to the combined value
+    timeInput.value = combinedTime;
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% include 'homeheader.html' %}
+
+{% block body %}
+<div class="container-fluid d-flex justify-content-center align-items-center min-vh-100">
+  <div class="row w-100 justify-content-center">
+    <!-- Centered content inside a column -->
+    <div class="col-md-6 text-center">
+      <!-- Welcome Header -->
+      <h2 class="text-center" style="color: #333; margin-bottom: 20px;">Welcome!</h2>
+      <p style="font-size: 1.2rem; color: #555; line-height: 1.6;">
+        Our services provide you with a way to manage your NHL team. Please sign in to get access to your team. If you don't have an account yet, feel free to sign up to create your own team manager account.
+      </p>
+
+      <!-- Buttons for redirecting to register/login -->
+      <div class="mt-4">
+        <a href="{{ url_for('register') }}" class="btn btn-success mx-2">Sign up</a>
+        <a href="{{ url_for('login') }}" class="btn btn-primary mx-2">Sign in</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
